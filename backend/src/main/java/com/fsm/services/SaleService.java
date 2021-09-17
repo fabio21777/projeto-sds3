@@ -6,20 +6,22 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fsm.dto.SellerDTO;
-import com.fsm.entities.Seller;
+import com.fsm.dto.SaleDTO;
+import com.fsm.entities.Sale;
+import com.fsm.repositories.SaleRepository;
 import com.fsm.repositories.SellerRepository;
 
 @Service
-public class SellerService {
+public class SaleService {
+	@Autowired
+	SaleRepository saleRepository;
 	@Autowired
 	SellerRepository sellerRepository;
-
-	@Transactional(readOnly = true)
-	public Page<SellerDTO> findAll(PageRequest pageRequest) {
-		
-		Page<Seller> result = sellerRepository.findAll(pageRequest);
-		return result.map(x -> new SellerDTO(x));
+	@Transactional
+	public Page<SaleDTO> findAll(PageRequest pageRequest) {
+		sellerRepository.findAll();
+		Page<Sale> result = saleRepository.findAll(pageRequest);
+		return result.map(x -> new SaleDTO(x));
 	}	
 
 }

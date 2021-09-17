@@ -10,28 +10,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fsm.dto.SellerDTO;
-import com.fsm.services.SellerService;
+import com.fsm.dto.SaleDTO;
+import com.fsm.services.SaleService;
 
 @RestController
-@RequestMapping(value = "/sellers")
-public class SellerControllers {
+@RequestMapping(value = "/sales")
+public class SaleControllers {
 	@Autowired
-	private SellerService service;
-
+	private SaleService service;
 	
 	@GetMapping
-	public ResponseEntity<Page<SellerDTO>> findAll (
+	public ResponseEntity<Page<SaleDTO>> findAll (
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
-			@RequestParam(value = "orderBy", defaultValue = "name") String orderBy,
+			@RequestParam(value = "orderBy", defaultValue = "id") String orderBy,
 			@RequestParam(value = "direction", defaultValue = "DESC") String direction) {
 		PageRequest pageRequest = PageRequest.of(
 				page,
 				linesPerPage,
 				Direction.valueOf(direction),
 				orderBy);
-		Page<SellerDTO> pages = service.findAll(pageRequest);
+		Page<SaleDTO> pages = service.findAll(pageRequest);
 		return ResponseEntity.ok().body(pages);
 		
 	}
