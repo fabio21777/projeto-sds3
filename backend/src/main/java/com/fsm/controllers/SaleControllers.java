@@ -1,5 +1,7 @@
 package com.fsm.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fsm.dto.SaleDTO;
+import com.fsm.dto.SaleSuccessDTO;
+import com.fsm.dto.SaleSumDTO;
 import com.fsm.services.SaleService;
 
 @RestController
@@ -33,6 +37,18 @@ public class SaleControllers {
 		Page<SaleDTO> pages = service.findAll(pageRequest);
 		return ResponseEntity.ok().body(pages);
 		
+	}
+	
+	@GetMapping(value = "/amount-by-seller")
+	public ResponseEntity<List<SaleSumDTO>> amountGroupedBySeller() {
+		List<SaleSumDTO> list = service.amountGroupedBySeller();
+		return ResponseEntity.ok(list);
+	}	
+	
+	@GetMapping(value = "/success-by-seller")
+	public ResponseEntity<List<SaleSuccessDTO>>successGroupedBySeller(){
+		List<SaleSuccessDTO>list = service.successGroupedBySeller();
+		return ResponseEntity.ok(list);
 	}
 	
 }

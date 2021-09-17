@@ -20,6 +20,7 @@ public class SellerService {
 		
 		Page<Seller> result = sellerRepository.findAll(pageRequest);
 		return result.map(x -> new SellerDTO(x));
-	}	
+	}
+	
 
 }

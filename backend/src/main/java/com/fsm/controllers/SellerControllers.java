@@ -19,7 +19,6 @@ public class SellerControllers {
 	@Autowired
 	private SellerService service;
 
-	
 	@GetMapping
 	public ResponseEntity<Page<SellerDTO>> findAll (
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
