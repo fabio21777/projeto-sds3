@@ -57,6 +57,4 @@ function DataTable() {
 
 export default DataTable;
 
-function last<T>(first: any, arg1: boolean, last: any, arg3: boolean, number: any, arg5: number, totalElements: any, arg7: number, totalPages: any, arg9: number): [any, any] {
-    throw new Error("Function not implemented.");
-}
+
